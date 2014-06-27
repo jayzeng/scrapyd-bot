@@ -1,0 +1,30 @@
+{
+  "name": "hubot-scrapyd",
+  "version": "0.0.1",
+  "description": "Scrapyd commands for hubot",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "script/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jayzeng/scrapyd-bot.git"
+  },
+  "keywords": [
+    "Scrapy",
+    "hubot",
+    "scrapyd"
+  ],
+  "author": "Jay Zeng <jayzeng@jay-zeng.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jayzeng/scrapyd-bot/issues"
+  },
+  "homepage": "https://github.com/jayzeng/scrapyd-bot",
+  "devDependencies": {
+    "mocha": "^1.20.1"
+  },
+  "dependencies": {
+    "coffee-script": "^1.7.1"
+  }
+}
