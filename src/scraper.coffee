@@ -22,9 +22,12 @@
 #   jayzeng (jayzeng@jay-zeng.com)
 
 module.exports = (robot) ->
-  scraping_host = process.env.SCRAPED_URL
-  console.log SCRAPED_URL
   robot.respond /(scrape|s)( projects)/i, (msg) ->
+    if not process.env.SCRAPED_URL?
+        msg.send "SCRAPED_URL is not set"
+        return
+
+    scraping_host = process.env.SCRAPED_URL
     msg.http(scraping_host + "/listprojects.json")
       .get() (err, res, body) ->
         body = JSON.parse(body)
@@ -41,6 +44,12 @@ module.exports = (robot) ->
         msg.send "Available project(s): '#{projects}'"
 
   robot.respond /(scrape|s)( spiders)/i, (msg) ->
+    if not process.env.SCRAPED_URL?
+        msg.send "SCRAPED_URL is not set"
+        return
+
+    scraping_host = process.env.SCRAPED_URL
+
     msg.http(scraping_host + "/listspiders.json?project=ContentScraper")
       .get() (err, res, body) ->
         body = JSON.parse(body)
@@ -57,6 +66,12 @@ module.exports = (robot) ->
         return msg.send "Available spiders(s): '#{spiders}'"
 
   robot.respond /(scrape|s)( versions)/i, (msg) ->
+    if not process.env.SCRAPED_URL?
+        msg.send "SCRAPED_URL is not set"
+        return
+
+    scraping_host = process.env.SCRAPED_URL
+
     msg.http(scraping_host + "/listversions.json?project=ContentScraper")
       .get() (err, res, body) ->
         body = JSON.parse(body)
@@ -73,6 +88,12 @@ module.exports = (robot) ->
         return msg.send "Available version(s): '#{versions}'"
 
   robot.respond /(scrape|s)( jobs)/i, (msg) ->
+    if not process.env.SCRAPED_URL?
+        msg.send "SCRAPED_URL is not set"
+        return
+
+    scraping_host = process.env.SCRAPED_URL
+
     msg.http(scraping_host + "/listjobs.json?project=ContentScraper")
       .get() (err, res, body) ->
         body = JSON.parse(body)
@@ -87,6 +108,12 @@ module.exports = (robot) ->
         return
 
   robot.respond /(scrape|s)( run) (.*)?/i, (msg) ->
+    if not process.env.SCRAPED_URL?
+        msg.send "SCRAPED_URL is not set"
+        return
+
+    scraping_host = process.env.SCRAPED_URL
+
     spider_name = msg.match[3].trim()
     data="project=ContentScraper&spider=#{spider_name}"
 
@@ -103,6 +130,11 @@ module.exports = (robot) ->
         return msg.send "Added #{spider_name} to the queue, job id: " + body.jobid
 
   robot.respond /(scrape|s)( cancel) (.*)?/i, (msg) ->
+    if not process.env.SCRAPED_URL?
+        msg.send "SCRAPED_URL is not set"
+        return
+
+    scraping_host = process.env.SCRAPED_URL
     jobid = msg.match[3].trim()
     data="project=ContentScraper&job=#{jobid}"
 
