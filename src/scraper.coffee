@@ -31,7 +31,7 @@ module.exports = (robot) ->
     msg.http(scraping_host + "/listprojects.json")
       .get() (err, res, body) ->
         body = JSON.parse(body)
-        if err or body.error
+        if err or body.status == 'error'
           msg.send "Failed to fetch projects '#{err}'"
           return
 
@@ -53,7 +53,7 @@ module.exports = (robot) ->
     msg.http(scraping_host + "/listspiders.json?project=ContentScraper")
       .get() (err, res, body) ->
         body = JSON.parse(body)
-        if err or body.error
+        if err or body.status == 'error'
           msg.send "Failed to fetch spiders '#{err}"
           return
 
@@ -123,7 +123,7 @@ module.exports = (robot) ->
       .post(data) (err, res, body) ->
         body = JSON.parse(body)
 
-        if err or body.error
+        if err or body.status == 'error'
           msg.send "Failed to schedule spider '#{err}'"
           return
 
