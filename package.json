@@ -1,6 +1,6 @@
 {
   "name": "hubot-scrapyd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Scrapyd commands for hubot",
   "main": "index.coffee",
   "scripts": {
